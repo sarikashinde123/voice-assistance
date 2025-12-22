@@ -1,0 +1,30 @@
+{
+  "name": "voice-command-assistant-server",
+  "version": "1.0.0",
+  "description": "Backend server for AI-powered Voice Command Assistant using Deepgram",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "voice",
+    "deepgram",
+    "speech-to-text",
+    "ai"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@deepgram/sdk": "^3.4.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
+

@@ -1,0 +1,23 @@
+{
+  "name": "voice-driven-command-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered Voice Command Assistant using Deepgram",
+  "scripts": {
+    "install-all": "npm install --prefix server && npm install --prefix client",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client",
+    "dev-server": "npm run dev --prefix server",
+    "build-client": "npm run build --prefix client"
+  },
+  "keywords": [
+    "voice",
+    "deepgram",
+    "speech-to-text",
+    "react",
+    "nodejs",
+    "ai"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
