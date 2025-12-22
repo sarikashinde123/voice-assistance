@@ -1,0 +1,206 @@
+.available-commands {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.available-commands h2 {
+  color: #667eea;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commands-intro {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.commands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.command-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.command-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.command-card.expanded {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.command-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.command-header h3 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #333;
+}
+
+.command-card.expanded .command-header h3 {
+  color: white;
+}
+
+.action-badge {
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.command-card.expanded .action-badge {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.command-description {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.command-card.expanded .command-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.command-patterns {
+  margin-bottom: 1rem;
+}
+
+.command-patterns strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.command-card.expanded .command-patterns strong {
+  color: white;
+}
+
+.pattern-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pattern-tag {
+  background: white;
+  color: #667eea;
+  padding: 0.35rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.command-card.expanded .pattern-tag {
+  background: rgba(255, 255, 255, 0.9);
+  color: #667eea;
+}
+
+.command-examples {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.command-examples strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.command-examples ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.command-examples li {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.command-examples li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .available-commands {
+    padding: 1.5rem;
+  }
+
+  .available-commands h2 {
+    font-size: 1.5rem;
+  }
+
+  .commands-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .command-card {
+    padding: 1.25rem;
+  }
+}
+

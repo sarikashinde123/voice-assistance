@@ -1,0 +1,325 @@
+.voice-assistant {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.recording-section {
+  text-align: center;
+  padding: 2rem;
+}
+
+.microphone-button {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.microphone-button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.microphone-button.recording {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  animation: pulse 1.5s infinite;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.microphone-button.processing {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  cursor: not-allowed;
+}
+
+.mic-icon {
+  font-size: 4rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(245, 87, 108, 0.7);
+  }
+  50% {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 0 20px rgba(245, 87, 108, 0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.status-text {
+  margin: 1rem 0;
+  min-height: 30px;
+}
+
+.status-text p {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.audio-level-bar {
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin: 1rem auto;
+  overflow: hidden;
+}
+
+.audio-level-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+  transition: width 0.1s ease;
+  border-radius: 4px;
+}
+
+.error-message {
+  background: #dc3545;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.transcript-box,
+.command-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.transcript-box h3,
+.command-box h3 {
+  color: #667eea;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.transcript-box p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.command-box {
+  border-left: 5px solid #28a745;
+}
+
+.command-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.value {
+  color: #333;
+  font-size: 1rem;
+}
+
+.value.success {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.value.warning {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.value.action {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .microphone-button {
+    width: 120px;
+    height: 120px;
+  }
+
+  .mic-icon {
+    font-size: 3rem;
+  }
+
+  .transcript-box,
+  .command-box {
+    padding: 1rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* Compact Mode for Navbar */
+.voice-assistant-compact {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mic-button-compact {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mic-button-compact:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.mic-button-compact.recording {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  animation: pulse 1.5s infinite;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mic-button-compact.processing {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  cursor: not-allowed;
+}
+
+.mic-icon-compact {
+  font-size: 2rem;
+}
+
+.spinner-compact {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.status-compact {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.auto-stop-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.auto-stop-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.auto-stop-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.auto-stop-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mic-button-compact {
+    width: 50px;
+    height: 50px;
+  }
+
+  .mic-icon-compact {
+    font-size: 1.5rem;
+  }
+
+  .status-compact {
+    display: none;
+  }
+
+  .auto-stop-toggle {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+}

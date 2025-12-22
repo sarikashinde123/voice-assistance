@@ -1,0 +1,153 @@
+.command-history {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.command-history h2 {
+  color: #667eea;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom scrollbar */
+.history-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+.history-item {
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 4px solid #ddd;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.history-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-item.recognized {
+  border-left-color: #28a745;
+  background: #f0fff4;
+}
+
+.history-item.unrecognized {
+  border-left-color: #ffc107;
+  background: #fffbf0;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.history-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.history-transcript {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+.history-details {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+}
+
+.history-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.history-badge.action {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.history-badge.target {
+  background: #e0e7ff;
+  color: #667eea;
+}
+
+.history-timestamp {
+  color: #999;
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .command-history {
+    padding: 1.5rem;
+  }
+
+  .command-history h2 {
+    font-size: 1.5rem;
+  }
+
+  .history-item {
+    padding: 0.75rem;
+  }
+
+  .history-details {
+    padding-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
