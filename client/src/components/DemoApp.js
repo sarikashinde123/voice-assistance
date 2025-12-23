@@ -10,7 +10,6 @@ const DemoApp = ({ lastCommand }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSettings, setShowSettings] = useState(false);
   const [notification, setNotification] = useState('');
-  const [selectedUserId, setSelectedUserId] = useState(null);
 
   // Sample data for search results and users list
   const sampleData = {
@@ -145,7 +144,7 @@ const DemoApp = ({ lastCommand }) => {
         console.log('Unhandled action:', action);
         break;
     }
-  }, [lastCommand]);
+  }, [lastCommand, showSettings]); // Added showSettings to dependencies
 
   const showNotification = (message) => {
     setNotification(message);
