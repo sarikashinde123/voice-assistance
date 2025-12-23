@@ -55,6 +55,33 @@ const DemoApp = ({ lastCommand }) => {
     return results;
   };
 
+  // Enhanced intent recognition with synonyms
+  const recognizeIntent = (target) => {
+    const targetLower = target.toLowerCase().trim();
+    
+    // Define intent mappings with synonyms
+    const intentMap = {
+      home: ['home', 'homepage', 'main', 'landing', 'start', 'main page', 'landing page', 'home page', 'index'],
+      dashboard: ['dashboard', 'dash', 'overview', 'stats', 'statistics', 'analytics', 'metrics', 'main dashboard'],
+      users: ['user', 'users', 'people', 'members', 'team', 'accounts', 'profiles', 'user list', 'user management'],
+      tasks: ['task', 'tasks', 'todo', 'todos', 'to-do', 'to-dos', 'work', 'items', 'task list', 'my tasks'],
+      profile: ['profile', 'my profile', 'account', 'my account', 'settings profile', 'user profile', 'me'],
+      settings: ['setting', 'settings', 'config', 'configuration', 'preferences', 'options', 'setup']
+    };
+
+    // Check each intent for matches
+    for (const [intent, synonyms] of Object.entries(intentMap)) {
+      for (const synonym of synonyms) {
+        if (targetLower.includes(synonym)) {
+          console.log(`Intent recognized: "${targetLower}" → ${intent} (matched: ${synonym})`);
+          return intent;
+        }
+      }
+    }
+
+    return null; // No intent recognized
+  };
+
   // Process voice commands
   React.useEffect(() => {
     if (!lastCommand || !lastCommand.recognized) return;
@@ -68,27 +95,31 @@ const DemoApp = ({ lastCommand }) => {
 
     showNotification(`Command: ${action} ${target || ''}`);
 
+    // Recognize intent from target
+    const intent = recognizeIntent(target);
+    console.log('Recognized intent:', intent);
+
     switch (action) {
       case 'OPEN':
       case 'LAUNCH':
       case 'START':
       case 'SHOW':
         console.log('Checking target for settings:', target);
-        if (target.includes('setting')) {
+        
+        if (intent === 'settings') {
           console.log('Match found! Opening settings modal');
           setShowSettings(true);
+        } else if (intent) {
+          // Navigate to the recognized intent
+          setActiveTab(intent);
+          console.log(`Navigating to: ${intent}`);
         }
-        else if (target.includes('home')) setActiveTab('home');
-        else if (target.includes('dashboard')) setActiveTab('dashboard');
-        else if (target.includes('task')) setActiveTab('tasks');
-        else if (target.includes('profile')) setActiveTab('profile');
-        else if (target.includes('user')) setActiveTab('users');
         break;
 
       case 'CLOSE':
       case 'EXIT':
       case 'QUIT':
-        if (target.includes('setting')) {
+        if (intent === 'settings' || target.includes('setting')) {
           setShowSettings(false);
           console.log('Closing settings');
         }
@@ -96,11 +127,10 @@ const DemoApp = ({ lastCommand }) => {
 
       case 'NAVIGATE':
       case 'GOTO':
-        if (target.includes('home')) setActiveTab('home');
-        else if (target.includes('dashboard')) setActiveTab('dashboard');
-        else if (target.includes('task')) setActiveTab('tasks');
-        else if (target.includes('profile')) setActiveTab('profile');
-        else if (target.includes('user')) setActiveTab('users');
+        if (intent) {
+          setActiveTab(intent);
+          console.log(`Navigating to: ${intent}`);
+        }
         break;
 
       case 'SEARCH':
