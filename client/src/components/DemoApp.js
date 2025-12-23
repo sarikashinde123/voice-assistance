@@ -426,21 +426,6 @@ const DemoApp = ({ lastCommand }) => {
         </div>
       )}
 
-      {/* Debug Panel */}
-      <div className="debug-panel">
-        <button 
-          className="debug-btn"
-          onClick={() => {
-            console.log('Manual settings toggle. Current:', showSettings);
-            setShowSettings(!showSettings);
-          }}
-          title="Toggle Settings (Debug)"
-        >
-          🐛 Test Settings
-        </button>
-        <span className="debug-status">Settings: {showSettings ? 'OPEN' : 'CLOSED'}</span>
-      </div>
-
       <nav className="demo-nav">
         <button 
           className={activeTab === 'home' ? 'active' : ''} 
