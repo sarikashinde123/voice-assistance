@@ -17,7 +17,7 @@ async function interpretCommand(transcript) {
     console.log('🚀 Groq LLM Processing:', transcript);
 
     const response = await groq.chat.completions.create({
-      model: "llama-3.1-70b-versatile", // Fast, free, and powerful!
+      model: "llama-3.3-70b-versatile", // Latest, fast, free, and powerful!
       messages: [
         {
           role: "system",
