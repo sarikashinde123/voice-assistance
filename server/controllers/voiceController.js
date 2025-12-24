@@ -39,8 +39,14 @@ const transcribeAudio = async (req, res) => {
 
     console.log('Transcription successful:', transcript);
 
-    // Process the command with LLM for intelligent intent recognition
-    const commandResult = await interpretCommand(transcript);
+    // Process the command with pattern matching (free, no API needed)
+    const commandResult = processCommand(transcript);
+    
+    // Optional: Try LLM if pattern fails (uncomment when OpenAI credits available)
+    // if (!commandResult.recognized) {
+    //   const llmResult = await interpretCommand(transcript);
+    //   if (llmResult.recognized) return llmResult;
+    // }
 
     res.json({
       success: true,
@@ -98,8 +104,14 @@ const transcribeAudioUrl = async (req, res) => {
 
     console.log('Transcription successful:', transcript);
 
-    // Process the command with LLM for intelligent intent recognition
-    const commandResult = await interpretCommand(transcript);
+    // Process the command with pattern matching (free, no API needed)
+    const commandResult = processCommand(transcript);
+    
+    // Optional: Try LLM if pattern fails (uncomment when OpenAI credits available)
+    // if (!commandResult.recognized) {
+    //   const llmResult = await interpretCommand(transcript);
+    //   if (llmResult.recognized) return llmResult;
+    // }
 
     res.json({
       success: true,
