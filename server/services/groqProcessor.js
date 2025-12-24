@@ -28,6 +28,8 @@ Available Actions:
 - NAVIGATE: Navigate to a page/section
 - OPEN: Open a modal/dialog/page
 - CLOSE: Close a modal/dialog
+- ENABLE: Enable/turn on a setting or feature
+- DISABLE: Disable/turn off a setting or feature
 - SEARCH: Search for content
 - CREATE: Create new items
 - DELETE: Remove items
@@ -41,6 +43,9 @@ Available Targets:
 - tasks: Todo/work items page
 - profile: User account/profile page
 - settings: Configuration/preferences
+- dark mode: Dark theme setting
+- notifications: Notification setting
+- sound effects: Sound effects setting
 
 ALWAYS return valid JSON in this exact format:
 {
@@ -54,19 +59,22 @@ Examples:
 "go to dashboard" → {"action":"NAVIGATE","target":"dashboard","params":{},"recognized":true}
 "show me people" → {"action":"NAVIGATE","target":"users","params":{},"recognized":true}
 "I want to see stats" → {"action":"NAVIGATE","target":"dashboard","params":{},"recognized":true}
-"take me to my profile" → {"action":"NAVIGATE","target":"profile","params":{},"recognized":true}
 "open settings" → {"action":"OPEN","target":"settings","params":{},"recognized":true}
-"show preferences" → {"action":"OPEN","target":"settings","params":{},"recognized":true}
+"close settings" → {"action":"CLOSE","target":"settings","params":{},"recognized":true}
+"enable dark mode" → {"action":"ENABLE","target":"dark mode","params":{},"recognized":true}
+"turn on dark mode" → {"action":"ENABLE","target":"dark mode","params":{},"recognized":true}
+"activate dark mode" → {"action":"ENABLE","target":"dark mode","params":{},"recognized":true}
+"disable dark mode" → {"action":"DISABLE","target":"dark mode","params":{},"recognized":true}
+"turn off dark mode" → {"action":"DISABLE","target":"dark mode","params":{},"recognized":true}
+"enable notifications" → {"action":"ENABLE","target":"notifications","params":{},"recognized":true}
+"turn on notifications" → {"action":"ENABLE","target":"notifications","params":{},"recognized":true}
+"disable notifications" → {"action":"DISABLE","target":"notifications","params":{},"recognized":true}
+"turn off sound" → {"action":"DISABLE","target":"sound effects","params":{},"recognized":true}
+"enable sound effects" → {"action":"ENABLE","target":"sound effects","params":{},"recognized":true}
 "search for documents" → {"action":"SEARCH","target":"dashboard","params":{"query":"documents"},"recognized":true}
 "find Sarah" → {"action":"SEARCH","target":"users","params":{"query":"Sarah"},"recognized":true}
-"looking for John" → {"action":"SEARCH","target":"users","params":{"query":"John"},"recognized":true}
 "what's happening today" → {"action":"NAVIGATE","target":"dashboard","params":{},"recognized":true}
 "show me the team" → {"action":"NAVIGATE","target":"users","params":{},"recognized":true}
-"where can I see analytics" → {"action":"NAVIGATE","target":"dashboard","params":{},"recognized":true}
-"I want to see what's going on" → {"action":"NAVIGATE","target":"dashboard","params":{},"recognized":true}
-"landing page" → {"action":"NAVIGATE","target":"home","params":{},"recognized":true}
-"main page" → {"action":"NAVIGATE","target":"home","params":{},"recognized":true}
-"close settings" → {"action":"CLOSE","target":"settings","params":{},"recognized":true}
 
 If the command is unclear or cannot be mapped, return:
 {"action":"UNKNOWN","target":"","params":{},"recognized":false}
