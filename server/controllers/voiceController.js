@@ -1,5 +1,6 @@
 const { getDeepgramClient, deepgramConfig } = require('../config/deepgram');
 const { processCommand } = require('../services/commandProcessor');
+const { interpretCommand } = require('../services/llmProcessor');
 
 /**
  * Transcribe audio file to text using Deepgram
@@ -38,8 +39,8 @@ const transcribeAudio = async (req, res) => {
 
     console.log('Transcription successful:', transcript);
 
-    // Process the command
-    const commandResult = processCommand(transcript);
+    // Process the command with LLM for intelligent intent recognition
+    const commandResult = await interpretCommand(transcript);
 
     res.json({
       success: true,
@@ -97,8 +98,8 @@ const transcribeAudioUrl = async (req, res) => {
 
     console.log('Transcription successful:', transcript);
 
-    // Process the command
-    const commandResult = processCommand(transcript);
+    // Process the command with LLM for intelligent intent recognition
+    const commandResult = await interpretCommand(transcript);
 
     res.json({
       success: true,
