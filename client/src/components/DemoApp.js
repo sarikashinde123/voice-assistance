@@ -108,7 +108,10 @@ const DemoApp = ({ lastCommand }) => {
         
         if (intent === 'settings') {
           console.log('Match found! Opening settings modal');
-          setShowSettings(true);
+          setShowSettings(prevState => {
+            console.log('Setting showSettings to true, previous:', prevState);
+            return true;
+          });
         } else if (intent) {
           // Navigate to the recognized intent
           setActiveTab(intent);
@@ -119,9 +122,13 @@ const DemoApp = ({ lastCommand }) => {
       case 'CLOSE':
       case 'EXIT':
       case 'QUIT':
+        console.log('Close command received, intent:', intent, 'target:', target);
         if (intent === 'settings' || target.includes('setting')) {
-          setShowSettings(false);
-          console.log('Closing settings');
+          console.log('Closing settings via voice command');
+          setShowSettings(prevState => {
+            console.log('Setting showSettings to false, previous:', prevState);
+            return false;
+          });
         }
         break;
 
@@ -174,7 +181,7 @@ const DemoApp = ({ lastCommand }) => {
         console.log('Unhandled action:', action);
         break;
     }
-  }, [lastCommand, showSettings]); // Added showSettings to dependencies
+  }, [lastCommand]); // Removed showSettings from dependencies // Added showSettings to dependencies
 
   const showNotification = (message) => {
     setNotification(message);
@@ -471,9 +478,23 @@ const DemoApp = ({ lastCommand }) => {
       </main>
 
       {showSettings && (
-        <div className="settings-modal" onClick={() => setShowSettings(false)}>
+        <div 
+          className="settings-modal" 
+          onClick={() => {
+            console.log('Backdrop clicked, closing settings');
+            setShowSettings(false);
+          }}
+        >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setShowSettings(false)}>✕</button>
+            <button 
+              className="close-btn" 
+              onClick={() => {
+                console.log('X button clicked, closing settings');
+                setShowSettings(false);
+              }}
+            >
+              ✕
+            </button>
             <h2>⚙️ Settings</h2>
             <div className="setting-item">
               <label>Notifications</label>
@@ -488,7 +509,15 @@ const DemoApp = ({ lastCommand }) => {
               <input type="checkbox" defaultChecked />
             </div>
             <p className="hint">💡 Say "Close settings" or click outside to dismiss</p>
-            <button className="btn-primary" onClick={() => setShowSettings(false)}>Close</button>
+            <button 
+              className="btn-primary" 
+              onClick={() => {
+                console.log('Close button clicked, closing settings');
+                setShowSettings(false);
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
