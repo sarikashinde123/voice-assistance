@@ -1,6 +1,6 @@
 const { getDeepgramClient, deepgramConfig } = require('../config/deepgram');
 const { processCommand } = require('../services/commandProcessor');
-const { interpretCommand } = require('../services/llmProcessor');
+const { interpretCommand } = require('../services/groqProcessor');
 
 /**
  * Transcribe audio file to text using Deepgram
@@ -39,14 +39,8 @@ const transcribeAudio = async (req, res) => {
 
     console.log('Transcription successful:', transcript);
 
-    // Process the command with pattern matching (free, no API needed)
-    const commandResult = processCommand(transcript);
-    
-    // Optional: Try LLM if pattern fails (uncomment when OpenAI credits available)
-    // if (!commandResult.recognized) {
-    //   const llmResult = await interpretCommand(transcript);
-    //   if (llmResult.recognized) return llmResult;
-    // }
+    // Process command with Groq LLM for natural language understanding (FREE & FAST!)
+    const commandResult = await interpretCommand(transcript);
 
     res.json({
       success: true,
@@ -104,14 +98,8 @@ const transcribeAudioUrl = async (req, res) => {
 
     console.log('Transcription successful:', transcript);
 
-    // Process the command with pattern matching (free, no API needed)
-    const commandResult = processCommand(transcript);
-    
-    // Optional: Try LLM if pattern fails (uncomment when OpenAI credits available)
-    // if (!commandResult.recognized) {
-    //   const llmResult = await interpretCommand(transcript);
-    //   if (llmResult.recognized) return llmResult;
-    // }
+    // Process command with Groq LLM for natural language understanding (FREE & FAST!)
+    const commandResult = await interpretCommand(transcript);
 
     res.json({
       success: true,
