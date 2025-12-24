@@ -10,6 +10,13 @@ const DemoApp = ({ lastCommand }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSettings, setShowSettings] = useState(false);
   const [notification, setNotification] = useState('');
+  
+  // Settings state
+  const [settings, setSettings] = useState({
+    notifications: true,
+    darkMode: false,
+    soundEffects: true
+  });
 
   // Sample data for search results and users list
   const sampleData = {
@@ -129,6 +136,38 @@ const DemoApp = ({ lastCommand }) => {
             console.log('Setting showSettings to false, previous:', prevState);
             return false;
           });
+        }
+        break;
+      
+      case 'ENABLE':
+      case 'ACTIVATE':
+      case 'TURN ON':
+        console.log('Enable command for:', target);
+        if (target.includes('dark') || target.includes('mode')) {
+          setSettings(prev => ({ ...prev, darkMode: true }));
+          showNotification('Dark mode enabled');
+        } else if (target.includes('notification')) {
+          setSettings(prev => ({ ...prev, notifications: true }));
+          showNotification('Notifications enabled');
+        } else if (target.includes('sound')) {
+          setSettings(prev => ({ ...prev, soundEffects: true }));
+          showNotification('Sound effects enabled');
+        }
+        break;
+      
+      case 'DISABLE':
+      case 'DEACTIVATE':
+      case 'TURN OFF':
+        console.log('Disable command for:', target);
+        if (target.includes('dark') || target.includes('mode')) {
+          setSettings(prev => ({ ...prev, darkMode: false }));
+          showNotification('Dark mode disabled');
+        } else if (target.includes('notification')) {
+          setSettings(prev => ({ ...prev, notifications: false }));
+          showNotification('Notifications disabled');
+        } else if (target.includes('sound')) {
+          setSettings(prev => ({ ...prev, soundEffects: false }));
+          showNotification('Sound effects disabled');
         }
         break;
 
@@ -426,7 +465,7 @@ const DemoApp = ({ lastCommand }) => {
   };
 
   return (
-    <div className="demo-app">
+    <div className={`demo-app ${settings.darkMode ? 'dark-mode' : ''}`}>
       {notification && (
         <div className="notification">
           🎤 {notification}
@@ -497,18 +536,45 @@ const DemoApp = ({ lastCommand }) => {
             </button>
             <h2>⚙️ Settings</h2>
             <div className="setting-item">
-              <label>Notifications</label>
-              <input type="checkbox" defaultChecked />
+              <label>
+                <input 
+                  type="checkbox" 
+                  checked={settings.notifications}
+                  onChange={(e) => {
+                    setSettings(prev => ({ ...prev, notifications: e.target.checked }));
+                    showNotification(`Notifications ${e.target.checked ? 'enabled' : 'disabled'}`);
+                  }}
+                />
+                Notifications
+              </label>
             </div>
             <div className="setting-item">
-              <label>Dark Mode</label>
-              <input type="checkbox" />
+              <label>
+                <input 
+                  type="checkbox" 
+                  checked={settings.darkMode}
+                  onChange={(e) => {
+                    setSettings(prev => ({ ...prev, darkMode: e.target.checked }));
+                    showNotification(`Dark mode ${e.target.checked ? 'enabled' : 'disabled'}`);
+                  }}
+                />
+                Dark Mode
+              </label>
             </div>
             <div className="setting-item">
-              <label>Sound Effects</label>
-              <input type="checkbox" defaultChecked />
+              <label>
+                <input 
+                  type="checkbox" 
+                  checked={settings.soundEffects}
+                  onChange={(e) => {
+                    setSettings(prev => ({ ...prev, soundEffects: e.target.checked }));
+                    showNotification(`Sound effects ${e.target.checked ? 'enabled' : 'disabled'}`);
+                  }}
+                />
+                Sound Effects
+              </label>
             </div>
-            <p className="hint">💡 Say "Close settings" or click outside to dismiss</p>
+            <p className="hint">💡 Say "Enable dark mode" or "Disable notifications"</p>
             <button 
               className="btn-primary" 
               onClick={() => {

@@ -5,6 +5,73 @@
   overflow: hidden;
   max-width: 100%;
   height: fit-content;
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode Styles */
+.demo-app.dark-mode {
+  background: #1a1a2e;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.demo-app.dark-mode .demo-nav {
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom-color: #333;
+}
+
+.demo-app.dark-mode .demo-nav button {
+  color: #e0e0e0;
+}
+
+.demo-app.dark-mode .demo-nav button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.demo-app.dark-mode .demo-nav button.active {
+  background: rgba(102, 126, 234, 0.6);
+}
+
+.demo-app.dark-mode .demo-content {
+  background: #16213e;
+}
+
+.demo-app.dark-mode .tab-content {
+  color: #e0e0e0;
+}
+
+.demo-app.dark-mode .tab-content h2 {
+  color: #9fa8da;
+}
+
+.demo-app.dark-mode .stat-card,
+.demo-app.dark-mode .task-item,
+.demo-app.dark-mode .user-card,
+.demo-app.dark-mode .profile-card {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+.demo-app.dark-mode .modal-content {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.demo-app.dark-mode .close-btn {
+  background: #333;
+  color: #e0e0e0;
+}
+
+.demo-app.dark-mode .close-btn:hover {
+  background: #444;
+}
+
+.demo-app.dark-mode .setting-item label {
+  color: #e0e0e0;
+}
+
+.demo-app.dark-mode .hint {
+  color: #999;
 }
 
 .notification {
