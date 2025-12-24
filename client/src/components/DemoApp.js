@@ -471,8 +471,8 @@ const DemoApp = ({ lastCommand }) => {
       </main>
 
       {showSettings && (
-        <div className="settings-modal">
-          <div className="modal-content">
+        <div className="settings-modal" onClick={() => setShowSettings(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={() => setShowSettings(false)}>✕</button>
             <h2>⚙️ Settings</h2>
             <div className="setting-item">
@@ -487,7 +487,8 @@ const DemoApp = ({ lastCommand }) => {
               <label>Sound Effects</label>
               <input type="checkbox" defaultChecked />
             </div>
-            <p className="hint">Say "Close settings" to dismiss</p>
+            <p className="hint">💡 Say "Close settings" or click outside to dismiss</p>
+            <button className="btn-primary" onClick={() => setShowSettings(false)}>Close</button>
           </div>
         </div>
       )}

@@ -557,6 +557,7 @@
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease;
+  cursor: pointer; /* Show clickable cursor on backdrop */
 }
 
 @keyframes fadeIn {
@@ -573,6 +574,7 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
   animation: slideUp 0.3s ease;
+  cursor: default; /* Normal cursor inside modal */
 }
 
 @keyframes slideUp {
