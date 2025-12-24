@@ -142,16 +142,31 @@ const DemoApp = ({ lastCommand }) => {
       case 'ENABLE':
       case 'ACTIVATE':
       case 'TURN ON':
-        console.log('Enable command for:', target);
+        console.log('✅ ENABLE command received!');
+        console.log('Full target:', target);
+        console.log('Checking conditions:');
+        console.log('  - includes("dark"):', target.includes('dark'));
+        console.log('  - includes("mode"):', target.includes('mode'));
+        
         if (target.includes('dark') || target.includes('mode')) {
-          setSettings(prev => ({ ...prev, darkMode: true }));
+          console.log('✅ Condition matched! Enabling dark mode...');
+          setSettings(prev => {
+            console.log('Previous settings:', prev);
+            const newSettings = { ...prev, darkMode: true };
+            console.log('New settings:', newSettings);
+            return newSettings;
+          });
           showNotification('Dark mode enabled');
         } else if (target.includes('notification')) {
+          console.log('✅ Enabling notifications');
           setSettings(prev => ({ ...prev, notifications: true }));
           showNotification('Notifications enabled');
         } else if (target.includes('sound')) {
+          console.log('✅ Enabling sound effects');
           setSettings(prev => ({ ...prev, soundEffects: true }));
           showNotification('Sound effects enabled');
+        } else {
+          console.log('❌ No condition matched for target:', target);
         }
         break;
       
